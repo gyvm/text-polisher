@@ -12,3 +12,5 @@ gem "haml"
 gem "rubocop"
 gem "puma"
 gem "diff-lcs"
+gem 'aws-sdk-bedrockruntime'
+gem 'json'

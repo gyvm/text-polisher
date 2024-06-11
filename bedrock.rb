@@ -1,37 +1,34 @@
-require 'net/http'
-require 'uri'
+require 'aws-sdk-bedrockruntime'
 require 'json'
 
-# AWS Bedrock APIのエンドポイントURL
-endpoint = 'https://api.example.com/bedrock'
+# Clientを作成
+client = Aws::BedrockRuntime::Client.new(region: 'us-east-1')
 
-# リクエストボディ
-body = {
-  key1: 'value1',
-  key2: 'value2'
+# モデルとプロンプトを設定
+model_id = "anthropic.claude-3-haiku-20240307-v1:0"
+prompt = "Describe the purpose of a 'hello world' program in one line."
+
+# リクエストを作成
+native_request = {
+  anthropic_version: "bedrock-2023-05-31",
+  max_tokens: 512,
+  temperature: 0.5,
+  messages: [
+    {
+      role: "user",
+      content: [{ type: "text", text: prompt }]
+    }
+  ]
 }
 
-# URIオブジェクトを作成
-uri = URI.parse(endpoint)
-
-# HTTPリクエストを作成
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true # HTTPSの場合
-
-# リクエストヘッダーを設定
-request = Net::HTTP::Post.new(uri.request_uri)
-request['Content-Type'] = 'application/json'
-
-# リクエストボディをJSONに変換
-request.body = body.to_json
-
-# リクエストを送信し、レスポンスを取得
-response = http.request(request)
+# リクエストを送信
+response = client.invoke_model({
+  model_id: model_id,
+  body: native_request.to_json
+})
 
 # レスポンスを処理
-if response.code == '200'
-  result = JSON.parse(response.body)
-  puts "Success: #{result}"
-else
-  puts "Error: #{response.code} #{response.message}"
-end
+model_response = JSON.parse(response.body.read) 
+response_text = model_response["content"][0]["text"]
+
+puts response_text
