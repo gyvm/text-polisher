@@ -1,0 +1,47 @@
+<h1>文章チェッカー</h1>
+<p>
+  シンプルな校正と文字数カウントのツールです。<br>
+  どちらさまも自由に文章の校正と文字数のカウントをしてください。
+</p>
+
+<img src = '/tensaku_woman.png'>
+
+<textarea id="text-input" placeholder="ここにテキストを入力してください"></textarea>
+
+<p>現在の入力文字数</p>
+<div id="char-count">0</div>
+
+<div class="buttons">
+  <button id="reset-btn">AIで校正する</button>
+  <button id="reset-btn">リセット</button>
+</div>
+
+<!--校正結果-->
+<div class="options">
+  <label><input type="checkbox" id="half-char">半角文字を0.5字として数える</label>
+  <label><input type="checkbox" id="ignore-space">空白(space)をカウントしない</label>
+  <label><input type="checkbox" id="limit-char">入力文字の上限数</label>
+  <input type="number" id="limit-num" min="1" value="100">
+</div>
+
+<div class="note">
+  <h3>— NOTE —</h3>
+  <ul>
+    <li>このツールは、入力されたテキストの校正を行うものではありません。単なる文字数カウントツールです。</li>
+    <li>半角英数文字は1文字としてカウントします。0.5文字として数えたい場合は「半角文字を0.5字として数える」にチェックを入れてください。（※半角カナ文字は1文字としてカウントされます）</li>
+    <li>改行、タブは文字数にカウントされません。</li>
+    <li>空白文字（半角スペース・全角スペース）はカウントされます。カウントしたくない場合は「空白(space)をカウントしない」にチェックを入れてください。</li>
+    <li>「入力文字の上限数」に数字を入れると、テキストエリアに入力した文字数がその値に達していないのか、また超過しているのかをチェックできます。数字は半角数字で入れてください。</li>
+    <li>コピーボタンをクリックすると、入力した文字がクリップボードにコピーされます。</li>
+  </ul>
+</div>
+
+<div class="links">
+  <a href="#">GitHub</a><br>
+</div>
+
+<div class="links">
+  <a href="#">Blog</a><br>
+</div>
+
+<script src="/script.js"></script>
