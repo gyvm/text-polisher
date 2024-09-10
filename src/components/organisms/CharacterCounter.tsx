@@ -1,5 +1,11 @@
 import { ChangeEvent, memo } from "react";
-import { Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Textarea,
+  useBreakpointValue,
+  Heading,
+} from "@chakra-ui/react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton.tsx";
 import { TextCount } from "../molecules/TextCount.tsx";
 import { useCount } from "../../hooks/useCount.ts";
@@ -17,6 +23,8 @@ export const CharacterCounter = memo(() => {
       .then(() => alert("コピーしました"));
   };
 
+  const isExistAiText = true;
+
   const onClickReset = () => {
     count("");
   };
@@ -24,14 +32,53 @@ export const CharacterCounter = memo(() => {
   return (
     <>
       <h1>CharacterCounter</h1>
-      <Textarea
-        value={inputText?.text}
-        onChange={onChangeInputText}
-        placeholder="ここにテキストを入力してください..."
-      />
-      <TextCount />
-      <PrimaryButton onClick={onClickCopy}>コピー</PrimaryButton>
-      <PrimaryButton onClick={onClickReset}>リセット</PrimaryButton>
+      <Box p={8} bg="yellow" borderRadius="lg" shadow="md" m={4}>
+        <Flex
+          bg={"white"}
+          direction={useBreakpointValue({ base: "column", md: "row" })}
+          gap={4}
+        >
+          <Box
+            flex={1}
+            bg={"#f0eeed"}
+            borderRadius="md"
+            mb={{ base: 2, md: 0 }}
+            shadow="sm"
+          >
+            <Heading size="md" mb={4}>
+              文章を入力してください
+            </Heading>
+            <Textarea
+              value={inputText?.text}
+              onChange={onChangeInputText}
+              placeholder="ここにテキストを入力してください..."
+              color={"orange.500"}
+              resize={"vertical"}
+              minH={"200px"}
+              border={"1px"}
+              borderColor={"black"}
+            />
+            <TextCount />
+            <PrimaryButton onClick={onClickReset}>リセット</PrimaryButton>
+          </Box>
+          {isExistAiText && (
+            <Box
+              flex={1}
+              bg={"#f0eeed"}
+              borderRadius="md"
+              minH={"200px"}
+              p={4}
+              shadow="sm"
+            >
+              <Heading size="md" mb={4}>
+                添削された文章
+              </Heading>
+              <p>AIが生成したテキストがあります</p>
+              <PrimaryButton onClick={onClickCopy}>コピー</PrimaryButton>
+            </Box>
+          )}
+        </Flex>
+      </Box>
     </>
   );
 });
