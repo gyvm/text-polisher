@@ -59,6 +59,7 @@ export const CharacterCounter = memo(() => {
               borderColor={"black"}
             />
             <TextCount />
+            <PrimaryButton>AI添削する</PrimaryButton>
             <PrimaryButton onClick={onClickReset}>リセット</PrimaryButton>
           </Box>
           {isExistAiText && (
@@ -74,6 +75,7 @@ export const CharacterCounter = memo(() => {
                 添削された文章
               </Heading>
               <p>AIが生成したテキストがあります</p>
+              <PrimaryButton>差分を表示する</PrimaryButton>
               <PrimaryButton onClick={onClickCopy}>コピー</PrimaryButton>
             </Box>
           )}

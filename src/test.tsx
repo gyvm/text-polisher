@@ -5,7 +5,6 @@ import {
   Text,
   VStack,
   HStack,
-  Checkbox,
   Button,
   Avatar,
   Badge,
