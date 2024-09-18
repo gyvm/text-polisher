@@ -49,6 +49,32 @@ export const CharacterCounter = memo(() => {
               文章を入力してください
             </Heading>
             <Textarea
+              id="original-text"
+              placeholder="ここにテキストを入力してください..."
+              value={inputText?.text}
+              onChange={onChangeInputText}
+              rows={10}
+              w="100%"
+              p={4}
+              fontSize="lg"
+              border="2px"
+              borderColor="indigo.200"
+              _dark={{
+                borderColor: "indigo.700",
+                bg: "gray.800",
+                color: "white",
+              }}
+              borderRadius="lg"
+              _focus={{
+                borderColor: "indigo.500",
+                ring: 2,
+                ringColor: "indigo.200",
+                // ringOpacity: 0.5,
+                opacity: 0.5,
+              }}
+              transition="all 0.3s ease-in-out"
+            />
+            <Textarea
               value={inputText?.text}
               onChange={onChangeInputText}
               placeholder="ここにテキストを入力してください..."
