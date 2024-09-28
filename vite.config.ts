@@ -1,7 +1,8 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import build from '@hono/vite-build/cloudflare-pages'
+import adapter from '@hono/vite-dev-server/cloudflare'
+import honox from 'honox/vite'
+import { defineConfig } from 'vite'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-});
+  plugins: [honox({ devServer: { adapter } }), build()]
+})
