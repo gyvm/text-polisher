@@ -1,12 +1,7 @@
-import type { ErrorHandler } from 'hono'
+import '@hono/react-renderer'
 
-const handler: ErrorHandler = (e, c) => {
-  if ('getResponse' in e) {
-    return e.getResponse()
+declare module '@hono/react-renderer' {
+  interface Props {
+    title?: string
   }
-  console.error(e.message)
-  c.status(500)
-  return c.render('Internal Server Error')
 }
-
-export default handler

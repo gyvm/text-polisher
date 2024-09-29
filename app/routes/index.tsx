@@ -1,6 +1,6 @@
 import { createRoute } from 'honox/factory'
 import Counter from '../islands/counter'
-import { useRequestContext } from 'hono/jsx-renderer'
+import { useRequestContext } from '@hono/react-renderer'
 
 export default createRoute((c) => {
   return c.render(
